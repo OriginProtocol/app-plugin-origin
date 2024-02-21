@@ -1,3 +1,4 @@
 [submodule "ethereum-plugin-sdk"]
 	path = ethereum-plugin-sdk
 	url = https://github.com/LedgerHQ/ethereum-plugin-sdk
+	branch = 0a98664deba849f05a51407d8a3edb05cd83d464
