@@ -283,7 +283,7 @@ static void handle_curve_router_exchange(ethPluginProvideParameter_t *msg, conte
                        NULL_ETH_ADDRESS,
                        ADDRESS_LENGTH) == 0) {
                 // First token in the route cannot be null
-                msg->result = ETH_PLUGIN_RESULT_ERROR;
+                context->next_param = UNEXPECTED_PARAMETER;
             } else {
                 handle_token_sent(msg, context);
                 context->next_param = TOKEN_RECEIVED;
