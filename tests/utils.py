@@ -1,18 +1,20 @@
 import os
 import re
 import json
-from pathlib import Path
 
 from web3 import Web3
 from eth_typing import ChainId
 
-from ledger_app_clients.ethereum.client import EthAppClient
 from ledger_app_clients.ethereum.utils import get_selector_from_data
 from ragger.navigator import NavInsID
 
 from pathlib import Path
 from typing import Optional
 
+from ledger_app_clients.ethereum.client import EthAppClient
+import ledger_app_clients.ethereum.response_parser as ResponseParser
+
+DERIVATION_PATH = "m/44'/60'/0'/0/0"
 makefile_relative_path = "../Makefile"
 
 makefile_path = (Path(os.path.dirname(os.path.realpath(__file__))) / Path(makefile_relative_path)).resolve()
@@ -87,3 +89,14 @@ def run_test(contract, data, backend, firmware, navigator, test_name, value=0, g
                                                       "Hold to sign",
                                                       ROOT_SCREENSHOT_PATH,
                                                       test_name)
+
+class WalletAddr:
+    client: EthAppClient
+
+    def __init__(self, backend):
+        self.client = EthAppClient(backend)
+
+    def get(self, path=DERIVATION_PATH) -> bytes:
+        with self.client.get_public_addr(display=False, bip32_path=path):
+            pass
+        return ResponseParser.pk_addr(self.client.response().data)[1]
