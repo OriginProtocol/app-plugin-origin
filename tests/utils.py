@@ -5,7 +5,7 @@ import json
 from web3 import Web3
 from eth_typing import ChainId
 
-from ledger_app_clients.ethereum.utils import get_selector_from_data
+from ledger_app_clients.ethereum.utils import get_selector_from_data, recover_transaction
 from ragger.navigator import NavInsID
 
 from pathlib import Path
