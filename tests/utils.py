@@ -62,23 +62,26 @@ def run_test(contract, data, backend, firmware, navigator, test_name, wallet_add
                                contract.address,
                                # Extract function selector from the encoded data
                                get_selector_from_data(data))
+
+    tx_params = {
+        "nonce": 20,
+        "maxFeePerGas": Web3.to_wei(145, "gwei"),
+        "maxPriorityFeePerGas": Web3.to_wei(1.5, "gwei"),
+        "gas": gas,
+        "to": contract.address,
+        "value": value,
+        "chainId": ChainId.ETH,
+        "data": data
+    }
+
     # send the transaction
-    with client.sign(DERIVATION_PATH, {
-             "nonce": 20,
-             "maxFeePerGas": Web3.to_wei(145, "gwei"),
-             "maxPriorityFeePerGas": Web3.to_wei(1.5, "gwei"),
-             "gas": gas,
-             "to": contract.address,
-             "value": value,
-             "chainId": ChainId.ETH,
-             "data": data
-        }):
+    with client.sign(DERIVATION_PATH, tx_params):
         # Validate the on-screen request by performing the navigation appropriate for this device
         if firmware.device.startswith("nano"):
             navigator.navigate_until_text_and_compare(NavInsID.RIGHT_CLICK,
                                                       [NavInsID.BOTH_CLICK],
-                                                      "Accept and send",
                                                       ROOT_SCREENSHOT_PATH,
+                                                      "Accept",
                                                       test_name)
         else:
             navigator.navigate_until_text_and_compare(NavInsID.USE_CASE_REVIEW_TAP,
