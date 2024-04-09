@@ -54,7 +54,7 @@ def load_contract(address, abi_file):
             )
         )
 
-def run_test(contract, data, backend, firmware, navigator, test_name, value=0, gas=300000):
+def run_test(contract, data, backend, firmware, navigator, test_name, wallet_addr, value=0, gas=300000):
     client = EthAppClient(backend)
 
     # first setup the external plugin
@@ -87,6 +87,10 @@ def run_test(contract, data, backend, firmware, navigator, test_name, value=0, g
                                                       "Hold to sign",
                                                       ROOT_SCREENSHOT_PATH,
                                                       test_name)
+    # verify signature
+    vrs = ResponseParser.signature(client.response().data)
+    addr = recover_transaction(tx_params, vrs)
+    assert addr == wallet_addr.get()
 
 class WalletAddr:
     client: EthAppClient
