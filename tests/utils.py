@@ -58,12 +58,10 @@ def run_test(contract, data, backend, firmware, navigator, test_name, value=0, g
     client = EthAppClient(backend)
 
     # first setup the external plugin
-    with client.set_external_plugin(PLUGIN_NAME,
-                                    contract.address,
-                                    # Extract function selector from the encoded data
-                                    get_selector_from_data(data)):
-        pass
-
+    client.set_external_plugin(PLUGIN_NAME,
+                               contract.address,
+                               # Extract function selector from the encoded data
+                               get_selector_from_data(data))
     # send the transaction
     with client.sign("m/44'/60'/1'/0/0", {
              "nonce": 20,
@@ -74,7 +72,7 @@ def run_test(contract, data, backend, firmware, navigator, test_name, value=0, g
              "value": value,
              "chainId": ChainId.ETH,
              "data": data
-         }):
+        }):
         # Validate the on-screen request by performing the navigation appropriate for this device
         if firmware.device.startswith("nano"):
             navigator.navigate_until_text_and_compare(NavInsID.RIGHT_CLICK,
