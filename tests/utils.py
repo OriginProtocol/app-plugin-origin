@@ -80,8 +80,8 @@ def run_test(contract, data, backend, firmware, navigator, test_name, wallet_add
         if firmware.device.startswith("nano"):
             navigator.navigate_until_text_and_compare(NavInsID.RIGHT_CLICK,
                                                       [NavInsID.BOTH_CLICK],
-                                                      ROOT_SCREENSHOT_PATH,
                                                       "Accept",
+                                                      ROOT_SCREENSHOT_PATH,
                                                       test_name)
         else:
             navigator.navigate_until_text_and_compare(NavInsID.USE_CASE_REVIEW_TAP,
