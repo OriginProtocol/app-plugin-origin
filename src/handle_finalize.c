@@ -1,7 +1,5 @@
 #include "plugin.h"
 
-#include "eth_internals.h"
-
 void handle_finalize(ethPluginFinalize_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
 
