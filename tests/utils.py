@@ -77,7 +77,7 @@ def run_test(contract, data, backend, firmware, navigator, test_name, wallet_add
     # send the transaction
     with client.sign(DERIVATION_PATH, tx_params):
         # Validate the on-screen request by performing the navigation appropriate for this device
-        if firmware.device.startswith("nano"):
+        if firmware.is_nano:
             navigator.navigate_until_text_and_compare(NavInsID.RIGHT_CLICK,
                                                       [NavInsID.BOTH_CLICK],
                                                       "Accept",
