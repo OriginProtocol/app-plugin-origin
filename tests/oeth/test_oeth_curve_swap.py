@@ -11,7 +11,7 @@ contract_curve_router = load_contract(
     "curve-router"
 )
 
-def test_oeth_curve_swap_from_oeth(backend, firmware, navigator, test_name):
+def test_oeth_curve_swap_from_oeth(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange", [
         1,
         0,
@@ -19,9 +19,9 @@ def test_oeth_curve_swap_from_oeth(backend, firmware, navigator, test_name):
         Web3.to_wei(0.975, "ether")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_oeth_curve_swap_to_oeth(backend, firmware, navigator, test_name):
+def test_oeth_curve_swap_to_oeth(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange", [
         0,
         1,
@@ -29,9 +29,9 @@ def test_oeth_curve_swap_to_oeth(backend, firmware, navigator, test_name):
         Web3.to_wei(0.995, "ether")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_oeth_curve_swap_multiple_oeth_to_reth(backend, firmware, navigator, test_name):
+def test_oeth_curve_swap_multiple_oeth_to_reth(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_router.encodeABI("exchange_multiple", [
         [
             bytes.fromhex("856c4Efb76C1D1AE02e20CEB03A2A6a08b0b8dC3"),
@@ -54,9 +54,9 @@ def test_oeth_curve_swap_multiple_oeth_to_reth(backend, firmware, navigator, tes
         Web3.to_wei(0.941, "ether"),
     ])
 
-    run_test(contract_curve_router, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_router, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_oeth_curve_swap_multiple_reth_to_oeth(backend, firmware, navigator, test_name):
+def test_oeth_curve_swap_multiple_reth_to_oeth(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_router.encodeABI("exchange_multiple", [
         [
             bytes.fromhex("ae78736cd615f374d3085123a210448e74fc6393"),
@@ -79,9 +79,9 @@ def test_oeth_curve_swap_multiple_reth_to_oeth(backend, firmware, navigator, tes
         Web3.to_wei(0.941, "ether"),
     ])
 
-    run_test(contract_curve_router, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_router, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_oeth_curve_swap_multiple_eth_to_oeth(backend, firmware, navigator, test_name):
+def test_oeth_curve_swap_multiple_eth_to_oeth(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_router.encodeABI("exchange_multiple", [
         [
             bytes.fromhex("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"),
@@ -104,9 +104,9 @@ def test_oeth_curve_swap_multiple_eth_to_oeth(backend, firmware, navigator, test
         Web3.to_wei(0.941, "ether"),
     ])
 
-    run_test(contract_curve_router, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_router, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_oeth_curve_swap_multiple_oeth_to_eth(backend, firmware, navigator, test_name):
+def test_oeth_curve_swap_multiple_oeth_to_eth(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_router.encodeABI("exchange_multiple", [
         [
             bytes.fromhex("856c4Efb76C1D1AE02e20CEB03A2A6a08b0b8dC3"),
@@ -129,9 +129,9 @@ def test_oeth_curve_swap_multiple_oeth_to_eth(backend, firmware, navigator, test
         Web3.to_wei(0.941, "ether"),
     ])
 
-    run_test(contract_curve_router, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_router, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_oeth_curve_swap_multiple_eth_to_oeth_diff_route(backend, firmware, navigator, test_name):
+def test_oeth_curve_swap_multiple_eth_to_oeth_diff_route(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_router.encodeABI("exchange_multiple", [
         [
             bytes.fromhex("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"),
@@ -154,4 +154,4 @@ def test_oeth_curve_swap_multiple_eth_to_oeth_diff_route(backend, firmware, navi
         Web3.to_wei(0.941, "ether"),
     ])
 
-    run_test(contract_curve_router, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_router, data, backend, firmware, navigator, test_name, wallet_addr)
