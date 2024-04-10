@@ -6,7 +6,7 @@ contract_curve_pool = load_contract(
     "ousd-curve-pool"
 )
 
-def test_ousd_curve_swap_from_dai(backend, firmware, navigator, test_name):
+def test_ousd_curve_swap_from_dai(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange_underlying", [
         1,
         0,
@@ -14,9 +14,9 @@ def test_ousd_curve_swap_from_dai(backend, firmware, navigator, test_name):
         Web3.to_wei(9750, "ether")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_ousd_curve_swap_to_dai(backend, firmware, navigator, test_name):
+def test_ousd_curve_swap_to_dai(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange_underlying", [
         0,
         1,
@@ -24,9 +24,9 @@ def test_ousd_curve_swap_to_dai(backend, firmware, navigator, test_name):
         Web3.to_wei(9750, "ether")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_ousd_curve_swap_from_usdt(backend, firmware, navigator, test_name):
+def test_ousd_curve_swap_from_usdt(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange_underlying", [
         3,
         0,
@@ -34,9 +34,9 @@ def test_ousd_curve_swap_from_usdt(backend, firmware, navigator, test_name):
         Web3.to_wei(9750, "ether")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_ousd_curve_swap_to_usdt(backend, firmware, navigator, test_name):
+def test_ousd_curve_swap_to_usdt(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange_underlying", [
         0,
         3,
@@ -44,9 +44,9 @@ def test_ousd_curve_swap_to_usdt(backend, firmware, navigator, test_name):
         Web3.to_wei(9750, "mwei")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_ousd_curve_swap_from_usdc(backend, firmware, navigator, test_name):
+def test_ousd_curve_swap_from_usdc(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange_underlying", [
         2,
         0,
@@ -54,9 +54,9 @@ def test_ousd_curve_swap_from_usdc(backend, firmware, navigator, test_name):
         Web3.to_wei(9750, "ether")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)
 
-def test_ousd_curve_swap_to_usdc(backend, firmware, navigator, test_name):
+def test_ousd_curve_swap_to_usdc(backend, firmware, navigator, test_name, wallet_addr):
     data = contract_curve_pool.encodeABI("exchange_underlying", [
         0,
         2,
@@ -64,4 +64,4 @@ def test_ousd_curve_swap_to_usdc(backend, firmware, navigator, test_name):
         Web3.to_wei(9750, "mwei")
     ])
 
-    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name)
+    run_test(contract_curve_pool, data, backend, firmware, navigator, test_name, wallet_addr)

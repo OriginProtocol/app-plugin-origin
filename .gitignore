@@ -28,4 +28,9 @@ ledger/
 tests/snapshots-tmp/
 
 # Directory storing the ethereum build output for tests run
-tests/ethereum_build/build/
+tests/.test_dependencies/*
+!tests/.test_dependencies/ethereum/
+tests/.test_dependencies/ethereum/*
+!tests/.test_dependencies/ethereum/.ethereum_application_build_goes_there
+
+.DS_Store
