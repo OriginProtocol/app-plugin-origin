@@ -31,7 +31,7 @@ static bool handle_token_sent_curve_pool(ethPluginProvideParameter_t *msg, conte
                           msg->pluginSharedRO->txContent->destination,
                           ADDRESS_LENGTH) == 0;
 
-    // Ensure the everything but the last 2 bits are zero
+    // Ensure that everything but the last 2 bytes are zero
     for (uint32_t i = 2; i <= INT128_LENGTH / 2; i++) {
         if (U2BE(msg->parameter, PARAMETER_LENGTH - (2 * i)) != 0) {
             PRINTF("Unsupported Token\n");
@@ -92,7 +92,7 @@ static bool handle_token_received_curve_pool(ethPluginProvideParameter_t *msg, c
                           msg->pluginSharedRO->txContent->destination,
                           ADDRESS_LENGTH) == 0;
 
-    // Ensure the everything but the last 2 bits are zero
+    // Ensure that everything but the last 2 bytes are zero
     for (uint32_t i = 2; i <= INT128_LENGTH / 2; i++) {
         if (U2BE(msg->parameter, PARAMETER_LENGTH - (2 * i)) != 0) {
             PRINTF("Unsupported Token\n");
